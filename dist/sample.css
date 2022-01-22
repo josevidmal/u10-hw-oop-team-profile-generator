@@ -31,7 +31,7 @@ section {
 }
 
 .team-card {
-    flex: 0 0 20%;
+    flex: 0 0 25%;
     height: 17em;
     box-shadow: 5px 5px 8px rgb(133, 132, 132);
 }
