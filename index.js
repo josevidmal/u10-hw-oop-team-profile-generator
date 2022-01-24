@@ -29,7 +29,7 @@ const mgrQuestions = () => {
     
         .then(() => {
             addMember();
-        })
+        });
 };
 
 const addMember = () => {
@@ -51,7 +51,7 @@ const addMember = () => {
             } else {
                 return;
             }
-        })
+        });
 };
 
 const engQuestions = () => {
@@ -81,7 +81,7 @@ const engQuestions = () => {
 
         .then(() => {
             addMember();
-        })
+        });
 
 };
 
@@ -112,7 +112,7 @@ const intQuestions = () => {
 
         .then(() => {
             addMember();
-        })
+        });
 
 };
 
