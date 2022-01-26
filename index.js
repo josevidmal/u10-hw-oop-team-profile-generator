@@ -1,6 +1,29 @@
 const inquirer = require("inquirer");
-
 const fs = require("fs");
+// const Employee = require("./lib/Employee");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+
+const teamMembers = [];
+
+/* function init() {
+    let manager = new Manager();
+     
+        manager.getName()
+        .then((answers) => {
+            manager.getId()
+        }).then((answers) => {
+            manager.getEmail()
+        }).then((answers) => {
+            manager.getOfficeNumber()
+        }).then((answers) => {
+            manager.getRole
+        })
+
+} 
+
+init(); */
 
 const mgrQuestions = () => {
     inquirer
@@ -27,7 +50,10 @@ const mgrQuestions = () => {
             },
         ])
     
-        .then(() => {
+        .then((answers) => {
+            let manager = new Manager(answers.manager_name, answers.manager_id, answers.manager_email, role, answers.office_number);
+            teamMembers.push(manager);
+            console.log(teamMembers);
             addMember();
         });
 };
@@ -79,7 +105,10 @@ const engQuestions = () => {
             },
         ])
 
-        .then(() => {
+        .then((answers) => {
+            let engineer = new Engineer(answers.engineer_name, answers.engineer_id, answers.engineer_email, "Engineer", answers.engineer_github);
+            teamMembers.push(engineer);
+            console.log(teamMembers);
             addMember();
         });
 
@@ -110,14 +139,17 @@ const intQuestions = () => {
             },
         ])
 
-        .then(() => {
+        .then((answers) => {
+            let intern = new Intern(answers.intern_name, answers.intern_id, answers.intern_email, "Intern", answers.intern_school);
+            teamMembers.push(intern);
+            console.log(teamMembers);
             addMember();
         });
 
-};
+}; 
 
 function init() {
     mgrQuestions();
-};
+}
 
 init();

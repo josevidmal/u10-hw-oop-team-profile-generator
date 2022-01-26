@@ -6,30 +6,43 @@ jest.mock("inquirer");
 
 describe("Engineer subclass", () => {
     describe("Initialization", () => {
-        it("should create an object that inherits the properties of the 'Employee' class and adds a github property", () => {
-            const name = "Jose";
-            const id = 65;
-            const email = "jose@fakemail.com";
-            const obj = new Employee(name, id, email);
-            const github = "josegithub";
-            const subObj = new Engineer(name, id, email, github);
+        it("should create an object that inherits the properties of the 'Employee' class and adds a 'github' property", () => {
+            let name;
+            let id;
+            let email;
+            let role;
+            let obj = new Employee(name, id, email, role);
+            let github;
+            let subObj = new Engineer(name, id, email, role, github);
             expect(subObj.name).toEqual(obj.name);
             expect(subObj.id).toEqual(obj.id);
             expect(subObj.email).toEqual(obj.email);
-            expect(subObj.github).toEqual("josegithub");            
+            expect(subObj.role).toEqual(obj.role);
+            expect(subObj.github).toEqual(github);            
         });
     });
 
     describe("getGithub", () => {
-        it("should prompt a question object and get the GitHub username of an engineer as an answer", () => {
-            let p = Promise.resolve({ answers: {} });
-            return expect(p).resolves.toEqual({ answers: {} });
+        it("should return the value given by the user to the 'github' property in the 'Engineer' subclass", () => {
+            let name = "Joe";
+            let id = 50;
+            let email = "joe@fakemail.com";
+            let role;
+            let github = "joegithub"
+            let obj = new Engineer(name, id, email, role, github);
+            expect(obj.github).toEqual("joegithub");
         });
     });
 
     describe("getRole", () => {
-        it("should return a 'role' property set to 'Engineer' as its value", () => {
-            expect("Engineer").toBeTruthy();
+        it("should return the value 'Engineer' to the 'role' property in the 'Engineer' subclass", () => {
+            let name = "Joe";
+            let id = 50;
+            let email = "joe@fakemail.com";
+            let role = "Engineer";
+            let github = "joegithub";
+            let obj = new Engineer(name, id, email, role, github);
+            expect(obj.role).toEqual("Engineer");
         });
     });
 });
