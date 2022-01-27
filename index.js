@@ -4,6 +4,7 @@ const fs = require("fs");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const helper = require("./src/helper.js");
 
 const teamMembers = [];
 
@@ -51,7 +52,7 @@ const mgrQuestions = () => {
         ])
     
         .then((answers) => {
-            let manager = new Manager(answers.manager_name, answers.manager_id, answers.manager_email, role, answers.office_number);
+            let manager = new Manager(answers.manager_name, answers.manager_id, answers.manager_email, "Manager", answers.office_number);
             teamMembers.push(manager);
             console.log(teamMembers);
             addMember();
@@ -74,8 +75,10 @@ const addMember = () => {
                 engQuestions();
             } if (answers.member_or_finish === "Add Intern") {
                 intQuestions();
-            } else {
-                return;
+            } if (answers.member_or_finish === "Finish building team") {
+                fs.writeFile('./dist/index.html', generateHTML(), (err) => 
+                err ? console.error(err) : console.log('HTML successfully generated')
+                );
             }
         });
 };
@@ -153,3 +156,100 @@ function init() {
 }
 
 init();
+
+function renderRoleIcon() {
+    //for (const item of teamMembers) {
+        if (teamMembers.role === "Manager") {
+            return `<i class="fas fa-mug-hot"></i>`;
+        } if (item.role === "Engineer") {
+            return `<i class="fas fa-glasses"></i>`;
+        } if (item.role === "Intern") {
+            return `<i class="fas fa-user-graduate"></i>`;
+        }
+    //}
+};
+
+function renderSection() {
+    //for (const item of teamMembers) {
+        if (item.role === "Manager") {
+            return `<section id="manager" class="team-card">
+            <div class="card-header">
+                <h2>${item.name}</h2>
+                <h3>${renderRoleIcon()}<span> ${item.role}</span></h3>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li class="employee-id">ID: ${item.id}</li>
+                    <li class="email">Email: <a href="mailto:${item.email}">${item.email}</a></li>
+                    <li id="office-number">Office number: ${item.officeNumber}</li>
+                </ul>
+            </div>
+        </section>`
+        } if (item.role === "Engineer") {
+            return `<section id="engineer" class="team-card">
+            <div class="card-header">
+                <h2>${item.name}</h2>
+                <h3>${renderRoleIcon()}<span> ${item.role}</span></h3>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li class="employee-id">ID: ${item.id}</li>
+                    <li class="email">Email: <a href="mailto:${item.email}">${item.email}</a></li>
+                    <li id="github">GitHub: <a href="https://github.com/${item.github}" target="_blank">${item.github}</a></li>
+                </ul>
+            </div>
+        </section>`
+        } if (item.role === "Intern") {
+            return `<section id="intern" class="team-card">
+            <div class="card-header">
+                <h2>${item.name}</h2>
+                <h3>${renderRoleIcon()}<span> ${item.role}</span></h3>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li class="employee-id">ID: ${item.id}</li>
+                    <li class="email">Email: <a href="mailto:${item.email}">${item.email}</a></li>
+                    <li id="school">School: ${item.school}</li>
+                </ul>
+            </div>
+        </section>`
+        } 
+    //}
+};
+
+/* const generateHTML = (data) => {
+
+    console.log(data);
+} */
+
+function generateHTML() {
+    const teamSections = teamMembers.map(renderSection);
+    const htmlSections = teamSections.join(' ');
+    return `<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UFT-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+            <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
+            <link rel="stylesheet" href="sample.css" />
+            <title>Team Profile Generator</title>
+        </head>
+    
+        <body>
+    
+            <header>
+                <h1>My Team</h1>       
+            </header>
+    
+            <main>
+
+            ${htmlSections}
+            
+            </main>
+
+    </body>
+</html>`
+
+};

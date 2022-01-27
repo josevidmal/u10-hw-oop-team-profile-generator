@@ -1,9 +1,69 @@
-const generateHTML = (data) => {
+function renderRoleIcon() {
+    for (const item of teamMembers) {
+        if (item === Manager) {
+            return `<i class="fas fa-mug-hot"></i>`;
+        } if (item === Engineer) {
+            return `<i class="fas fa-glasses"></i>`;
+        } if (item === Intern) {
+            return `<i class="fas fa-user-graduate"></i>`;
+        }
+    }
+};
+
+function renderSection() {
+    for (const item of teamMembers) {
+        if (item === Manager) {
+            return `<section id="manager" class="team-card">
+            <div class="card-header">
+                <h2>${Manager.name}</h2>
+                <h3>${renderRoleIcon()}<span> ${Manager.role}</span></h3>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li class="employee-id">ID: ${Manager.id}</li>
+                    <li class="email">Email: <a href="mailto:${Manager.email}">${Manager.email}</a></li>
+                    <li id="office-number">Office number: ${Manager.officeNumber}</li>
+                </ul>
+            </div>
+        </section>`
+        } if (item === Engineer) {
+            return `<section id="engineer" class="team-card">
+            <div class="card-header">
+                <h2>${Engineer.name}</h2>
+                <h3>${renderRoleIcon()}<span> ${Engineer.role}</span></h3>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li class="employee-id">ID: ${Engineer.id}</li>
+                    <li class="email">Email: <a href="mailto:${Engineer.email}">${Engineer.email}</a></li>
+                    <li id="github">GitHub: <a href="https://github.com/${Engineer.github}" target="_blank">${Engineer.github}</a></li>
+                </ul>
+            </div>
+        </section>`
+        } if (item === Intern) {
+            return `<section id="intern" class="team-card">
+            <div class="card-header">
+                <h2>${Intern.name}</h2>
+                <h3>${renderRoleIcon()}<span> ${Intern.role}</span></h3>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li class="employee-id">ID: ${Intern.id}</li>
+                    <li class="email">Email: <a href="mailto:${Intern.email}">${Intern.email}</a></li>
+                    <li id="school">School: ${Intern.school}</li>
+                </ul>
+            </div>
+        </section>`
+        } 
+    }
+};
+
+/* const generateHTML = (data) => {
 
     console.log(data);
-}
+} */
 
-module.exports = (data) => {
+function generateHTML() {
     return `<!DOCTYPE html>
     <html lang="en">
         <head>
@@ -23,10 +83,16 @@ module.exports = (data) => {
             </header>
     
             <main>
-            ${generateHTML(data)}
+
+            ${renderSection()}
+            
             </main>
 
     </body>
 </html>`
 
-}
+};
+
+module.exports = {
+    generateHTML
+};
