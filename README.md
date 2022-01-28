@@ -17,19 +17,21 @@ Finally, I used the helper.js file to create an empty array (`const teamMembers 
 
 The application looks like this when it is used:
 
-![Team Profile Generator 1]()
+![Team Profile Generator 1](./dist/images/team-profile-generator-1.png)
 
-![Team Profile Generator 2]()
+![Team Profile Generator 2](/dist/images/team-profile-generator-2.png)
 
-![Team Profile Generator 3]()
+![Team Profile Generator 3](/dist/images/team-profile-generator-3.png)
+
+![Team Profile Generator 4](/dist/images/team-profile-generator-4.png)
 
 Once the user selects the "Finish building team" option, from the list at the "What do you want to do now?" question, the app generates index.html and style.css files, which in conjunction show the team members information like this: 
 
-![Team Profile Generator 4]()
+![Team Profile Generator 5](/dist/images/team-profile-generator-5.png)
 
 To see the application in use watch the following [Walkthrough Video]()
 
-You can check these [index.html]() and [style.css]() files, which were generated using this application.
+You can check these [index.html](./dist/index.html) and [style.css](./dist/style.css) files, which were generated using this application.
 
 ## Technologies Used
 
