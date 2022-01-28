@@ -29,7 +29,7 @@ Once the user selects the "Finish building team" option, from the list at the "W
 
 ![Team Profile Generator 5](/dist/images/team-profile-generator-5.png)
 
-To see the application in use watch the following [Walkthrough Video]()
+To see the application in use watch the following [Walkthrough Video](https://drive.google.com/file/d/16F9HmEmcsVlzKNxtMtGKBWfUmoWkeg0X/view?usp=sharing)
 
 You can check these [index.html](./dist/index.html) and [style.css](./dist/style.css) files, which were generated using this application.
 
